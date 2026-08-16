@@ -1,0 +1,40 @@
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Python virtual environments
+.venv/
+.venv312/
+venv/
+env/
+**/.venv/
+**/.venv312/
+**/venv/
+**/env/
+
+# Local test and runtime logs
+*.log
+*.err.log
+
+# Python cache / tooling
+__pycache__/
+*.py[cod]
+
+# Node / frontend build artifacts
+node_modules/
+**/node_modules/
+frontend/dist/
+dist/
+
+# Databases
+*.sqlite3
+*.db
+backend/db.sqlite3
+
+# Django static / generated output
+staticfiles/
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
