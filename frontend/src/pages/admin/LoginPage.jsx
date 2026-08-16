@@ -5,8 +5,8 @@ import { api } from '../../services/api';
 
 export default function LoginPage() {
   const navigate = useNavigate();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('armin345976@gmail.com');
+  const [password, setPassword] = useState('admin123');
   const [error, setError] = useState('');
   const [submitting, setSubmitting] = useState(false);
 
@@ -50,7 +50,7 @@ export default function LoginPage() {
               <div className="mb-8">
                 <p className="text-xs uppercase tracking-[0.25em] text-violet-500">Staff access</p>
                 <h2 className="mt-3 text-3xl font-bold">Welcome back</h2>
-                <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">Sign in with your staff account.</p>
+                <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">Demo staff login: armin345976@gmail.com / admin123</p>
             </div>
 
             <form className="space-y-5" onSubmit={handleSubmit}>

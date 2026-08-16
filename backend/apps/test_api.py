@@ -153,6 +153,22 @@ class BarberShopAPITests(APITestCase):
 
         self.client.force_authenticate(user=self.staff_user)
 
+    def test_default_staff_user_is_bootstrapped(self):
+        from apps.accounts.apps import ensure_default_staff_account
+
+        self.user_model.objects.filter(username='ArkarMin').delete()
+        ensure_default_staff_account()
+
+        response = self.client.post(
+            reverse('staff-login'),
+            {'email': 'armin345976@gmail.com', 'password': 'admin123'},
+            format='json',
+        )
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.data['email'], 'armin345976@gmail.com')
+        self.assertTrue(response.data['is_staff'])
+
     def test_staff_can_log_in_with_email(self):
         response = self.client.post(
             reverse('staff-login'),

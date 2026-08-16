@@ -2,10 +2,16 @@ export function createSeatSocket({ onUpdate, onConnectionChange, onError }) {
   let reconnectTimeout = null;
   let reconnectDelay = 1000;
   let socket = null;
+  let isClosedManually = false;
 
   const connect = () => {
+    if (isClosedManually) {
+      return;
+    }
+
     onConnectionChange?.('connecting');
-    socket = new WebSocket(`${WS_BASE_URL}/ws/seats/`);
+    const socketUrl = new URL('/ws/seats/', `${WS_BASE_URL}/`).toString();
+    socket = new WebSocket(socketUrl);
 
     socket.onopen = () => {
       reconnectDelay = 1000;
@@ -28,12 +34,16 @@ export function createSeatSocket({ onUpdate, onConnectionChange, onError }) {
       }
     };
 
-    socket.onerror = () => {
+    socket.onerror = (event) => {
       onConnectionChange?.('error');
-      onError?.('WebSocket connection error');
+      onError?.(event?.message || 'WebSocket connection error');
     };
 
     socket.onclose = () => {
+      if (isClosedManually) {
+        return;
+      }
+
       onConnectionChange?.('reconnecting');
       reconnectTimeout = window.setTimeout(() => {
         connect();
@@ -46,6 +56,7 @@ export function createSeatSocket({ onUpdate, onConnectionChange, onError }) {
 
   return {
     close() {
+      isClosedManually = true;
       if (reconnectTimeout) {
         window.clearTimeout(reconnectTimeout);
       }

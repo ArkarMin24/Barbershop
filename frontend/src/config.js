@@ -1,5 +1,10 @@
+const normalizeWebSocketBase = (value) => {
+  const base = value || 'ws://localhost:8000';
+  return base.replace(/^http:\/\//i, 'ws://').replace(/^https:\/\//i, 'wss://').replace(/\/$/, '');
+};
+
 export const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000/api';
-export const WS_BASE_URL = import.meta.env.VITE_WS_URL || 'ws://localhost:8000';
+export const WS_BASE_URL = normalizeWebSocketBase(import.meta.env.VITE_WS_URL || 'ws://localhost:8000');
 
 export const adminNavItems = [
   { label: 'အနှစ်ချုပ်', path: '/admin/dashboard', icon: 'LayoutGrid' },
