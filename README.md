@@ -34,6 +34,30 @@ python manage.py migrate
 python manage.py runserver
 ```
 
+## Render deployment
+
+This project is set up for a Render deployment with:
+
+- backend web service running Django + Daphne ASGI
+- PostgreSQL database
+- frontend static site built with Vite
+
+Use the included [render.yaml](render.yaml) file and fill in the service names in the Render dashboard after creating the project.
+
+### Backend environment variables
+
+- `SECRET_KEY` = a strong random value
+- `DEBUG` = `False`
+- `DATABASE_URL` = automatically provided by Render when attached to the Postgres database
+- `ALLOWED_HOSTS` = your backend domain, for example `barber-backend.onrender.com`
+- `CORS_ALLOWED_ORIGINS` = your frontend URL, for example `https://barber-frontend.onrender.com`
+- `CSRF_TRUSTED_ORIGINS` = same as above
+
+### Frontend environment variables
+
+- `VITE_API_URL` = `https://YOUR_BACKEND.onrender.com/api`
+- `VITE_WS_URL` = `wss://YOUR_BACKEND.onrender.com`
+
 ## Notes
 
 - The custom staff dashboard is intentionally not built yet.
