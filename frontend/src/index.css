@@ -3,11 +3,11 @@
 @tailwind utilities;
 
 :root {
-  font-family: "Noto Sans Myanmar", "Myanmar Text", sans-serif;
-  line-height: 1.8;
+  font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+  line-height: 1.6;
   font-weight: 400;
-  color: #0f172a;
-  background: #f8fafc;
+  color: #24302b;
+  background: #eef4ef;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -18,7 +18,7 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 100%);
+  background: #eef4ef;
 }
 
 html.dark {
@@ -27,7 +27,7 @@ html.dark {
 }
 
 html.dark body {
-  background: linear-gradient(135deg, #020617 0%, #111827 100%);
+  background: #101312;
 }
 
 #root {
@@ -57,4 +57,33 @@ input,
 select,
 textarea {
   min-height: 2.75rem;
+}
+
+button,
+a,
+input,
+select,
+textarea {
+  transition: border-color 240ms ease-out, background-color 240ms ease-out, color 240ms ease-out, box-shadow 240ms ease-out, transform 240ms ease-out;
+}
+
+button:not(:disabled):active,
+a:active {
+  transform: scale(0.98);
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid rgba(217, 161, 54, 0.35);
+  outline-offset: 2px;
+}
+
+input:-webkit-autofill,
+select:-webkit-autofill,
+textarea:-webkit-autofill {
+  -webkit-text-fill-color: inherit;
+  box-shadow: 0 0 0 1000px #f7f3ea inset;
 }

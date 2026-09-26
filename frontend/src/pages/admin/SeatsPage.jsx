@@ -128,7 +128,7 @@ export default function SeatsPage() {
             <RefreshCcw className="h-4 w-4" />
             Refresh
           </button>
-          <button onClick={() => setShowNewSeat((current) => !current)} className="inline-flex items-center gap-2 rounded-2xl bg-violet-600 px-4 py-2.5 text-sm font-medium text-white shadow-lg shadow-violet-500/20">
+          <button onClick={() => setShowNewSeat((current) => !current)} className="inline-flex items-center gap-2 rounded-2xl bg-amber-400 px-4 py-2.5 text-sm font-medium text-stone-950 shadow-lg shadow-amber-500/20">
             <Plus className="h-4 w-4" />
             New seat
           </button>
@@ -146,7 +146,7 @@ export default function SeatsPage() {
             <option value="">No assigned barber</option>
             {barbers.filter((barber) => String(barber.shop) === newSeat.shop).map((barber) => <option key={barber.id} value={barber.id}>{barber.first_name} {barber.last_name}</option>)}
           </select>
-          <button disabled={creatingSeat} className="rounded-xl bg-violet-600 px-4 py-2.5 text-sm font-medium text-white disabled:opacity-60">{creatingSeat ? 'Creating...' : 'Create seat'}</button>
+          <button disabled={creatingSeat} className="rounded-xl bg-amber-400 px-4 py-2.5 text-sm font-medium text-stone-950 disabled:opacity-60">{creatingSeat ? 'Creating...' : 'Create seat'}</button>
         </form>
       ) : null}
 
@@ -158,7 +158,7 @@ export default function SeatsPage() {
             onClick={() => setActiveFilter(filter)}
             className={`rounded-full px-4 py-2 text-sm font-medium transition-all ${
               activeFilter === filter
-                ? 'bg-violet-600 text-white shadow-lg shadow-violet-500/20'
+                ? 'bg-amber-400 text-stone-950 shadow-lg shadow-amber-500/20'
                 : 'bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-300'
             }`}
           >

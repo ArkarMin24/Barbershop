@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.http import JsonResponse
 from django.urls import include, path
 
-from apps.accounts.views import CsrfTokenView, CustomerCreateView, CustomerDetailView, CustomerListView, StaffLoginView, StaffLogoutView, StaffSessionView
+from apps.accounts.views import CsrfTokenView, CustomerCreateView, CustomerDeleteAllView, CustomerDetailView, CustomerListView, StaffLoginView, StaffLogoutView, StaffSessionView
 from apps.barbers.views import BarberCreateView, BarberListView, BarberStatusUpdateView, BarberUpdateView
 from apps.queue.views import (
     AppointmentCreateView,
@@ -57,6 +57,7 @@ urlpatterns = [
         path('barbers/<int:pk>/status', BarberStatusUpdateView.as_view(), name='barber-status-update-no-slash'),
         path('customers/', CustomerCreateView.as_view(), name='customer-create'),
         path('customers/list/', CustomerListView.as_view(), name='customer-list'),
+        path('customers/delete-all/', CustomerDeleteAllView.as_view(), name='customer-delete-all'),
         path('customers/<int:pk>/', CustomerDetailView.as_view(), name='customer-detail'),
         path('queue/', QueueEntryListView.as_view(), name='queue-list'),
         path('queue/create/', QueueEntryCreateView.as_view(), name='queue-create'),

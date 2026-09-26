@@ -34,9 +34,9 @@ export function createSeatSocket({ onUpdate, onConnectionChange, onError }) {
       }
     };
 
-    socket.onerror = (event) => {
+    socket.onerror = () => {
       onConnectionChange?.('error');
-      onError?.(event?.message || 'WebSocket connection error');
+      onError?.('WebSocket connection error');
     };
 
     socket.onclose = () => {

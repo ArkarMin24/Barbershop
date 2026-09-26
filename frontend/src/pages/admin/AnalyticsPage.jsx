@@ -40,8 +40,8 @@ export default function AnalyticsPage() {
   return (
     <div className="space-y-5">
       <div className="flex items-center gap-3">
-        <BarChart3 className="h-6 w-6 text-violet-600" />
-        <div><p className="text-xs uppercase tracking-[0.2em] text-violet-500">Operations</p><h3 className="text-2xl font-bold">Live analytics</h3></div>
+        <BarChart3 className="h-6 w-6 text-amber-600" />
+        <div><p className="text-xs uppercase tracking-[0.2em] text-amber-500">Operations</p><h3 className="text-2xl font-bold">Live analytics</h3></div>
       </div>
       <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
         {cards.map(([label, value]) => (

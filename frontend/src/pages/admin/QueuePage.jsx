@@ -51,7 +51,7 @@ export default function QueuePage() {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between rounded-[28px] border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900">
+      <div className="flex items-center justify-between rounded-[28px] border border-slate-200 bg-white p-5 shadow-sm transition-all duration-300 ease-out hover:border-amber-300 hover:shadow-md dark:border-slate-800 dark:bg-slate-900">
         <div>
           <p className="text-sm text-slate-500">ဖောက်သည် စောင့်ဆိုင်းစာရင်း</p>
           <h3 className="mt-1 text-2xl font-bold">စောင့်ဆိုင်းစာရင်း</h3>
@@ -70,10 +70,10 @@ export default function QueuePage() {
           </div>
         ) : (
           entries.map((entry) => (
-            <div key={entry.id} className="rounded-[28px] border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900">
+            <div key={entry.id} className="rounded-[28px] border border-slate-200 bg-white p-5 shadow-sm transition-all duration-300 ease-out hover:border-amber-300 hover:shadow-md dark:border-slate-800 dark:bg-slate-900">
               <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
                 <div className="flex items-center gap-4">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-violet-100 text-lg font-bold text-violet-700 dark:bg-violet-900 dark:text-violet-200">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-amber-100 text-lg font-bold text-amber-700 dark:bg-amber-900 dark:text-amber-200">
                     #{entry.queue_number}
                   </div>
                   <div>
@@ -89,7 +89,7 @@ export default function QueuePage() {
                     <option value="COMPLETED">COMPLETED</option>
                     <option value="CANCELLED">CANCELLED</option>
                   </select>
-                  <button onClick={() => removeEntry(entry)} className="rounded-xl bg-rose-500/10 px-3 py-2 text-sm font-medium text-rose-700 dark:text-rose-300">ဖယ်ရှားရန်</button>
+                  <button onClick={() => removeEntry(entry)} className="rounded-xl bg-rose-500/10 px-3 py-2 text-sm font-medium text-rose-700 transition-colors hover:bg-rose-100 dark:text-rose-300 dark:hover:bg-rose-950/40">ဖယ်ရှားရန်</button>
                 </div>
               </div>
             </div>

@@ -1,5 +1,6 @@
 import os
 from pathlib import Path
+from urllib.parse import urlparse
 
 import dj_database_url
 
@@ -20,6 +21,7 @@ if os.environ.get('RENDER_EXTERNAL_HOSTNAME'):
     ALLOWED_HOSTS.append(os.environ['RENDER_EXTERNAL_HOSTNAME'])
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_COOKIES = bool(os.environ.get('RENDER_EXTERNAL_HOSTNAME')) or os.environ.get('SECURE_COOKIES', '').lower() == 'true'
 
 INSTALLED_APPS = [
     'daphne',
@@ -133,6 +135,12 @@ CORS_ALLOWED_ORIGINS = [
     'http://127.0.0.1:8000',
 ] + env_list(os.environ.get('CORS_ALLOWED_ORIGINS'))
 
+ALLOWED_HOSTS += [
+    parsed_origin.hostname
+    for parsed_origin in (urlparse(origin) for origin in CORS_ALLOWED_ORIGINS)
+    if parsed_origin.hostname and parsed_origin.hostname not in ALLOWED_HOSTS
+]
+
 CORS_ALLOW_CREDENTIALS = True
 CSRF_TRUSTED_ORIGINS = [
     'http://localhost:5173',
@@ -144,8 +152,8 @@ CSRF_TRUSTED_ORIGINS = [
 
 SESSION_COOKIE_SAMESITE = 'Lax'
 CSRF_COOKIE_SAMESITE = 'Lax'
-SESSION_COOKIE_SECURE = not DEBUG
-CSRF_COOKIE_SECURE = not DEBUG
+SESSION_COOKIE_SECURE = SECURE_COOKIES
+CSRF_COOKIE_SECURE = SECURE_COOKIES
 
 CHANNEL_LAYERS = {
     'default': {

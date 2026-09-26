@@ -95,7 +95,15 @@ class CustomerListView(generics.ListAPIView):
     permission_classes = [IsStaffOrReadOnly]
 
 
-class CustomerDetailView(generics.RetrieveAPIView):
+class CustomerDeleteAllView(APIView):
+    permission_classes = [IsStaffOrReadOnly]
+
+    def delete(self, request):
+        deleted_count, _ = Customer.objects.all().delete()
+        return Response({'deleted': deleted_count})
+
+
+class CustomerDetailView(generics.RetrieveDestroyAPIView):
     queryset = Customer.objects.all()
     serializer_class = CustomerSerializer
     permission_classes = [IsStaffOrReadOnly]

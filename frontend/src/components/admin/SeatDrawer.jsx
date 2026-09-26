@@ -90,7 +90,7 @@ export default function SeatDrawer({ seat, open, onClose, barbers, onStatusUpdat
 
         <div className="mt-8 flex items-center justify-end gap-3">
           <button type="button" onClick={onClose} className="rounded-2xl border border-slate-200 px-4 py-3 font-medium dark:border-slate-700">Cancel</button>
-          <button type="button" disabled={saving} onClick={handleSave} className="rounded-2xl bg-violet-600 px-4 py-3 font-medium text-white disabled:opacity-60">
+          <button type="button" disabled={saving} onClick={handleSave} className="rounded-2xl bg-amber-400 px-4 py-3 font-medium text-stone-950 disabled:opacity-60">
             {saving ? 'Saving...' : 'Save changes'}
           </button>
         </div>
